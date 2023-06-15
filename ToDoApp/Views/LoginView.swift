@@ -23,21 +23,28 @@ struct LoginView: View {
             VStack(spacing: 20) {
                 TextField("Enter Your Email Address", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                
                 
                 SecureField("Enter Your Password", text: $password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocorrectionDisabled()
                 
-                Button(action: {
-                    // Action for button
-                }) {
-                    Text("Log In")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color(hex: 0xFF1294F2))
-                        .cornerRadius(10)
-                }
+//                Button(action: {
+//                    // Action for button
+//                }) {
+//                    Text("Log In")
+//                        .font(.headline)
+//                        .foregroundColor(.white)
+//                        .frame(maxWidth: .infinity)
+//                        .frame(height: 50)
+//                        .background(Color(hex: 0xFF1294F2))
+//                        .cornerRadius(10)
+//                }
+                ButtonView(
+                title: "Log In", action: {}
+                )
             }
             .padding(.horizontal, 30)
             .padding(.top, 30)
