@@ -30,6 +30,7 @@
 		9D0F9FA72A3AE28F00F10F82 /* NewItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FA62A3AE28F00F10F82 /* NewItemViewViewModel.swift */; };
 		9D0F9FA92A3AE2A700F10F82 /* ToDoListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FA82A3AE2A700F10F82 /* ToDoListViewViewModel.swift */; };
 		9D0F9FAB2A3AE2DA00F10F82 /* ToDoListItemViewViweModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FAA2A3AE2DA00F10F82 /* ToDoListItemViewViweModel.swift */; };
+		9D0F9FAD2A3AEDA800F10F82 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FAC2A3AEDA800F10F82 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		9D0F9FA62A3AE28F00F10F82 /* NewItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewViewModel.swift; sourceTree = "<group>"; };
 		9D0F9FA82A3AE2A700F10F82 /* ToDoListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewViewModel.swift; sourceTree = "<group>"; };
 		9D0F9FAA2A3AE2DA00F10F82 /* ToDoListItemViewViweModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemViewViweModel.swift; sourceTree = "<group>"; };
+		9D0F9FAC2A3AEDA800F10F82 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				9D0F9F942A3AE0C400F10F82 /* RegisterView.swift */,
 				9D0F9F962A3AE0FE00F10F82 /* ToDoListView.swift */,
 				9D0F9F982A3AE10F00F10F82 /* ToDoListItemView.swift */,
+				9D0F9FAC2A3AEDA800F10F82 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D0F9F762A3AD17B00F10F82 /* ContentView.swift in Sources */,
+				9D0F9FAD2A3AEDA800F10F82 /* HeaderView.swift in Sources */,
 				9D0F9F9F2A3AE1F400F10F82 /* ContentViewViewModel.swift in Sources */,
 				9D0F9F8F2A3AE08100F10F82 /* ProfileView.swift in Sources */,
 				9D0F9F912A3AE09A00F10F82 /* LoginView.swift in Sources */,
