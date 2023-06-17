@@ -32,7 +32,9 @@ struct RegisterView: View {
                     .autocorrectionDisabled()
                 
                 ButtonView(
-                title: "Create Account", action: {}
+                title: "Create Account", action: {
+                    viewModel.register()
+                }
                 )
             }
             .padding(.horizontal, 30)
