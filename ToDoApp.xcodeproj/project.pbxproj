@@ -33,6 +33,7 @@
 		9D0F9FAD2A3AEDA800F10F82 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FAC2A3AEDA800F10F82 /* HeaderView.swift */; };
 		9D0F9FAF2A3B086800F10F82 /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FAE2A3B086800F10F82 /* KeyboardAwareModifier.swift */; };
 		9D0F9FB12A3B1C5700F10F82 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F9FB02A3B1C5700F10F82 /* ButtonView.swift */; };
+		9D50604D2A3D851000722B3F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D50604C2A3D850F00722B3F /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		9D0F9FAC2A3AEDA800F10F82 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		9D0F9FAE2A3B086800F10F82 /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
 		9D0F9FB02A3B1C5700F10F82 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		9D50604C2A3D850F00722B3F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				9D0F9F772A3AD17C00F10F82 /* Assets.xcassets */,
 				9D0F9F812A3AD52900F10F82 /* GoogleService-Info.plist */,
 				9D0F9FAE2A3B086800F10F82 /* KeyboardAwareModifier.swift */,
+				9D50604C2A3D850F00722B3F /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				9D0F9F742A3AD17B00F10F82 /* ToDoAppApp.swift in Sources */,
 				9D0F9FAB2A3AE2DA00F10F82 /* ToDoListItemViewViweModel.swift in Sources */,
 				9D0F9F9B2A3AE14F00F10F82 /* User.swift in Sources */,
+				9D50604D2A3D851000722B3F /* Extensions.swift in Sources */,
 				9D0F9FAF2A3B086800F10F82 /* KeyboardAwareModifier.swift in Sources */,
 				9D0F9F992A3AE10F00F10F82 /* ToDoListItemView.swift in Sources */,
 				9D0F9F932A3AE0B400F10F82 /* NewItemView.swift in Sources */,

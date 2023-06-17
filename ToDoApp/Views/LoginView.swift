@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var email = ""
-    @State var password = ""
+    @StateObject var viewModel = LoginViewModel()
     
     var body: some View {
         VStack {
@@ -20,14 +19,19 @@ struct LoginView: View {
                 background: Color(hex: 0xFFC6EAE9)
             )
             // Login Form
+            if !viewModel.errorMessage.isEmpty{
+                Text(viewModel.errorMessage)
+                    .foregroundColor(Color.red)
+            }
+            
             VStack(spacing: 20) {
-                TextField("Enter Your Email Address", text: $email)
+                TextField("Enter Your Email Address", text: $viewModel.email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                 
                 
-                SecureField("Enter Your Password", text: $password)
+                SecureField("Enter Your Password", text: $viewModel.password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocorrectionDisabled()
                 
@@ -43,7 +47,9 @@ struct LoginView: View {
 //                        .cornerRadius(10)
 //                }
                 ButtonView(
-                title: "Log In", action: {}
+                title: "Log In", action: {
+                    viewModel.login()
+                    }
                 )
             }
             .padding(.horizontal, 30)
