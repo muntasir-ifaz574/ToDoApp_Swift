@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = ContentViewViewViewModel()
+    
     var body: some View {
         NavigationView {
-            LoginView()
+            if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
+                //Homse Screen
+                ToDoListView()
+            } else {
+                LoginView()
+            }
         }
     }
 }
