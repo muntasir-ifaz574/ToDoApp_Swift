@@ -8,13 +8,72 @@
 import SwiftUI
 
 struct NewItemView: View {
+    @StateObject var viewModel = NewItemViewViewModel()
+    @Binding var newItemPresented: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            GeometryReader { geometry in
+                VStack {
+                    Text("New Thing To Do")
+                        .font(.system(size: geometry.size.width * 0.1))
+                        .bold()
+                        .padding(.top, geometry.size.height * 0.05)
+                    
+                    Form {
+                        Section(header: Text("Details")) {
+                            TextField("Title", text: $viewModel.title)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        
+                        Section(header: Text("Due Date")) {
+                            DatePicker(selection: $viewModel.dueDate, displayedComponents: .date) {
+                                Text("Select Date")
+                            }
+                            .datePickerStyle(WheelDatePickerStyle())
+                        }
+                    }
+                    .padding(.horizontal, geometry.size.width * 0.05)
+                    
+                    Button(action: {
+                        if viewModel.canSave {
+                            viewModel.save()
+                            newItemPresented = false
+                        } else {
+                            viewModel.showAlert = true
+                        }
+                    }) {
+                        Text("Save")
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    .padding(.horizontal, geometry.size.width * 0.1)
+                    .alert(isPresented: $viewModel.showAlert) {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text("Please fill all fields and select a due date equal to today or later.")
+                        )
+                    }
+                    
+                    Spacer()
+                }
+                .navigationBarTitle("", displayMode: .inline)
+            }
+        }
     }
 }
 
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemView()
+        NewItemView(
+            newItemPresented: Binding(
+                get: { return true },
+                set: { _ in }
+            )
+        )
     }
 }
