@@ -11,46 +11,59 @@ struct ProfileView: View {
     @StateObject var viewModel = ProfileViewViewModel()
     
     var body: some View {
-        NavigationView{
-            VStack{
-                if let user = viewModel.user{
+        NavigationView {
+            VStack {
+                if let user = viewModel.user {
                     Image(systemName: "person.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color.blue)
-                        .frame(width: 125, height:  125)
+                        .foregroundColor(.blue)
+                        .frame(width: 125, height: 125)
                         .padding()
                     
-                    //Info
-                    VStack(alignment: .leading){
-                        HStack {
-                            Text("Name: ")
-                            Text(user.name)
-                        }
-                        HStack {
-                            Text("Email: ")
-                            Text(user.email)
-                        }
-                        HStack {
-                            Text("Member  Since: ")
-                            Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
-                        }
+                    // Info
+                    VStack(alignment: .leading, spacing: 8) {
+                        InfoRow(title: "Name", value: user.name)
+                        InfoRow(title: "Email", value: user.email)
+                        InfoRow(title: "Member Since", value: "\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
                     }
                     .padding()
-                    //Sign out
-                    Button("Log Out") {
+                    
+                    // Sign out
+                    Button(action: {
                         viewModel.logout()
+                    }) {
+                        Text("Log Out")
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
                     }
-                    .tint(.red)
                     .padding()
                 } else {
-                    Text("Loading")
+                    ProgressView()
                 }
             }
             .navigationTitle("Profile")
         }
         .onAppear{
             viewModel.fatchUser()
+        }
+    }
+}
+
+struct InfoRow: View {
+    var title: String
+    var value: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .fontWeight(.semibold)
+            Text(value)
+                .foregroundColor(.secondary)
         }
     }
 }

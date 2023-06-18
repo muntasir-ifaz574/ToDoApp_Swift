@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
+    @State private var isLoggingIn = false
     
     var body: some View {
         VStack {
@@ -19,7 +20,7 @@ struct LoginView: View {
                 background: Color(hex: 0xFFC6EAE9)
             )
             // Login Form
-            if !viewModel.errorMessage.isEmpty{
+            if !viewModel.errorMessage.isEmpty {
                 Text(viewModel.errorMessage)
                     .foregroundColor(Color.red)
             }
@@ -29,28 +30,30 @@ struct LoginView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
+//                    .autocorrection()
                 
                 
                 SecureField("Enter Your Password", text: $viewModel.password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocorrectionDisabled()
+//                    .autocorrection()
                 
-//                Button(action: {
-//                    // Action for button
-//                }) {
-//                    Text("Log In")
-//                        .font(.headline)
-//                        .foregroundColor(.white)
-//                        .frame(maxWidth: .infinity)
-//                        .frame(height: 50)
-//                        .background(Color(hex: 0xFF1294F2))
-//                        .cornerRadius(10)
-//                }
-                ButtonView(
-                title: "Log In", action: {
+                Button(action: {
+                    isLoggingIn = true
                     viewModel.login()
+                }) {
+                    if isLoggingIn {
+                        ProgressView()
+                            .padding(.horizontal)
+                    } else {
+                        Text("Log In")
                     }
-                )
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(8)
             }
             .padding(.horizontal, 30)
             .padding(.top, 30)
@@ -72,6 +75,7 @@ struct LoginView: View {
         }
     }
 }
+
 
 
 struct LoginView_Previews: PreviewProvider {
