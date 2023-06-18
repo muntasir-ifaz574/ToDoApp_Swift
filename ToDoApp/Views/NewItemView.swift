@@ -26,11 +26,11 @@ struct NewItemView: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                         
-                        Section(header: Text("Due Date")) {
-                            DatePicker(selection: $viewModel.dueDate, displayedComponents: .date) {
-                                Text("Select Date")
+                        Section(header: Text("Due Date and Time")) {
+                            DatePicker(selection: $viewModel.dueDate, displayedComponents: [.date, .hourAndMinute]) {
+                                Text("Select Date and Time")
                             }
-                            .datePickerStyle(WheelDatePickerStyle())
+                            .datePickerStyle(GraphicalDatePickerStyle())
                         }
                     }
                     .padding(.horizontal, geometry.size.width * 0.05)
@@ -77,3 +77,4 @@ struct NewItemView_Previews: PreviewProvider {
         )
     }
 }
+
