@@ -10,42 +10,74 @@ import FirebaseFirestoreSwift
 
 struct ToDoListView: View {
     @StateObject var viewModel: ToDoListViewViewModel
-    @FirestoreQuery var item: [ToDoListItem]
+    @FirestoreQuery var items: [ToDoListItem]
     
-//    private let userId: String
-    
-    init(userId: String){
-//        self.userId = userId
-        self._item = FirestoreQuery(
-        collectionPath: "users/\(userId)/todos")
+    init(userId: String) {
+        self._items = FirestoreQuery(
+            collectionPath: "users/\(userId)/todos"
+        )
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
     }
     
     var body: some View {
-        NavigationView{
-            VStack{
-                List(item) { item in
-                    ToDoListItemView(item: item)
-                        .swipeActions{
-                            Button("Delete") {
-                                viewModel.delete(id: item.id)
-                            }
-                            .tint(.red)
+        NavigationView {
+            ZStack {
+                Color("Background")
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    HStack {
+                        Text("To-Do List")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            viewModel.showingNewItemView = true
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.title)
+                                .foregroundColor(.blue)
                         }
+                    }
+                    .padding()
+                    
+                    if items.isEmpty {
+                        Text("No items found")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding()
+                    } else {
+                        List {
+                            ForEach(items) { item in
+                                ToDoListItemView(item: item)
+                                    .swipeActions {
+                                        Button(action: {
+                                            viewModel.delete(id: item.id)
+                                        }) {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                    }
+                            }
+                            .listRowBackground(Color("ListItemBackground"))
+                        }
+                        .listStyle(.plain)
+                        .padding(.top)
+                    }
+                    
+                    Spacer()
+                }
+                .sheet(isPresented: $viewModel.showingNewItemView) {
+                    NewItemView(newItemPresented: $viewModel.showingNewItemView)
                 }
             }
-            .navigationTitle("To Do List")
-            .toolbar{
-                Button{
-                    viewModel.showingNewItemView = true
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-            .sheet(isPresented: $viewModel.showingNewItemView) {
-                NewItemView(newItemPresented: $viewModel.showingNewItemView)
-            }
+            .navigationTitle("")
+            .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

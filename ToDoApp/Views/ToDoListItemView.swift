@@ -13,30 +13,41 @@ struct ToDoListItemView: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text(item.title)
-                    .font(.body)
-                    
+                    .font(.headline)
+                    .foregroundColor(.primary)
                 
-                Text("\(Date(timeIntervalSince1970: item.dueDate).formatted(date: .abbreviated,time: .shortened))")
-                    .font(.footnote)
-                    .foregroundColor(Color(.secondaryLabel))
+                Text("\(formattedDueDate())")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
+            
             Spacer()
             
-            Button{
+            Button(action: {
                 viewModel.toggleIsDone(item: item)
-            } label: {
+            }) {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(.blue)
+                    .font(.title2)
             }
         }
+        .padding(.vertical, 8)
+    }
+    
+    private func formattedDueDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: Date(timeIntervalSince1970: item.dueDate))
     }
 }
 
 struct ToDoListItemView_Previews: PreviewProvider {
     static var previews: some View {
         ToDoListItemView(
-            item: .init(
+            item: ToDoListItem(
                 id: "123",
                 title: "Get Milk",
                 dueDate: Date().timeIntervalSince1970,
@@ -46,3 +57,4 @@ struct ToDoListItemView_Previews: PreviewProvider {
         )
     }
 }
+
