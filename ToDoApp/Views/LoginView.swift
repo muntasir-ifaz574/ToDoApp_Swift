@@ -30,13 +30,11 @@ struct LoginView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
-//                    .autocorrection()
                 
                 
                 SecureField("Enter Your Password", text: $viewModel.password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocorrectionDisabled()
-//                    .autocorrection()
                 
                 Button(action: {
                     isLoggingIn = true

@@ -7,6 +7,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject var viewModel = RegisterViewModel()
+    @State private var isLoggingIn = false
     
     var body: some View {
         VStack {
@@ -31,11 +32,22 @@ struct RegisterView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocorrectionDisabled()
                 
-                ButtonView(
-                title: "Create Account", action: {
+                Button(action: {
+                    isLoggingIn = true
                     viewModel.register()
+                }) {
+                    if isLoggingIn {
+                        ProgressView()
+                            .padding(.horizontal)
+                    } else {
+                        Text("Create Account")
+                    }
                 }
-                )
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(8)
             }
             .padding(.horizontal, 30)
             .padding(.top, 30)
